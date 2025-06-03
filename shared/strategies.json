@@ -1,2 +1,22 @@
 {
+  "USA": {
+    "style": "cooperative",
+    "aggressiveness": 0.3,
+    "bluff": 0.1
+  },
+  "China": {
+    "style": "bluffing",
+    "aggressiveness": 0.4,
+    "bluff": 0.3
+  },
+  "Russia": {
+    "style": "agressive",
+    "aggressiveness": 0.9,
+    "bluff": 0.4
+  },
+  "EU": {
+    "style": "cooperative",
+    "aggressiveness": 0.2,
+    "bluff": 0.2
+  }
 }
