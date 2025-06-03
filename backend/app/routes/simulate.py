@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Body
-from app.services.sim_engine import simulate_turn
+from sim_engine import simulate_turn
 
 router = APIRouter()
 
