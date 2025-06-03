@@ -1,2 +1,22 @@
 {
+  "USA": {
+    "resources": [ "technology", "military", "diplomatic influence" ],
+    "goals": [ "maintain global leadership", "expand trade", "climate cooperation" ],
+    "allies": [ "EU", "Japan", "Canada" ]
+  },
+  "China": {
+    "resources": [ "manufacturing", "infrastructure projects", "market size" ],
+    "goals": [ "regional dominance", "Belt and Road expansion", "increase global trade control" ],
+    "allies": [ "Russia", "Pakistan", "Iran" ]
+  },
+  "Russia": {
+    "resources": [ "energy exports", "military force", "cyber capabilities" ],
+    "goals": [ "influence Eastern Europe", "secure borders", "reduce Western influence" ],
+    "allies": [ "China", "Belarus", "Syria" ]
+  },
+  "EU": {
+    "resources": [ "economic power", "regulatory standards", "soft power" ],
+    "goals": [ "sustain unity", "combat climate change", "trade expansion" ],
+    "allies": [ "USA", "Japan", "Canada" ]
+  }
 }
