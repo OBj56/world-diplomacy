@@ -11,7 +11,5 @@
   <ItemGroup>
     <Folder Include="backend\app\models\" />
     <Folder Include="frontend\src\components\" />
-    <Folder Include="frontend\src\services\" />
-    <Folder Include="frontend\src\pages\" />
   </ItemGroup>
 </Project>

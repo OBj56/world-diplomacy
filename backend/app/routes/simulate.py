@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Body
-from sim_engine import simulate_turn
+from backend.app.services.sim_engine import simulate_turn
 
 router = APIRouter()
 
@@ -10,3 +10,4 @@ def simulate(
     objective: str = Body(..., embed=True)
 ):
     return simulate_turn(country_a, country_b, objective)
+
