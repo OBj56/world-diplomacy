@@ -1,7 +1,9 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from app.services.sim_engine import simulate_turn
+from services.sim_engine import simulate_turn
+
+
 
 app = FastAPI()
 
