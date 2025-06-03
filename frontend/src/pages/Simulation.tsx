@@ -1,3 +1,4 @@
+﻿import * as React from "react";
 import { useState } from "react";
 import { simulateTreaty } from "../services/api";
 
@@ -10,9 +11,9 @@ export default function SimulationPage() {
     const runSim = async () => {
         const result = await simulateTreaty(a, b, objective);
         setLog([
-            `???? ${result.a_message}`,
-            `???? ${result.b_message}`,
-            `?? ${result.next_step}`,
+            `🇺🇸 ${result.a_message}`,
+            `🇨🇳 ${result.b_message}`,
+            `🧭 ${result.next_step}`,
         ]);
     };
 
