@@ -1,43 +1,70 @@
-﻿import * as React from "react";
+﻿import React from "react";
 import { useState } from "react";
-import { simulateTreaty } from "../services/api";
+import axios from "axios";
+
+type SimulationResult = {
+    a_message: string;
+    b_message: string;
+    next_step: string;
+};
 
 export default function SimulationPage() {
-    const [log, setLog] = useState<string[]>([]);
     const [a, setA] = useState("USA");
     const [b, setB] = useState("China");
-    const [objective, setObjective] = useState("Climate Treaty");
+    const [objective, setObjective] = useState("Trade Agreement");
+    const [result, setResult] = useState<SimulationResult | null>(null);
 
-    const runSim = async () => {
-        const result = await simulateTreaty(a, b, objective);
-        setLog([
-            `🇺🇸 ${result.a_message}`,
-            `🇨🇳 ${result.b_message}`,
-            `🧭 ${result.next_step}`,
-        ]);
-    };
+    async function simulateTurn() {
+        try {
+            const res = await axios.post("http://localhost:8000/simulate", {
+                country_a: a,
+                country_b: b,
+                objective: objective
+            });
+            setResult(res.data);
+        } catch (error) {
+            setResult({
+                a_message: "Error",
+                b_message: "Could not fetch simulation result.",
+                next_step: ""
+            });
+        }
+    }
 
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4">Diplomatic Simulation</h1>
-            <div className="mb-2">
-                <select onChange={e => setA(e.target.value)} value={a}>
-                    <option>USA</option><option>Russia</option><option>India</option>
-                </select>
-                <select onChange={e => setB(e.target.value)} value={b}>
-                    <option>China</option><option>EU</option><option>Brazil</option>
-                </select>
-                <input
-                    value={objective}
-                    onChange={e => setObjective(e.target.value)}
-                    placeholder="Objective"
-                    className="ml-2 border p-1"
-                />
-                <button onClick={runSim} className="ml-2 px-4 py-1 bg-blue-500 text-white">Simulate</button>
+        <div className="p-4">
+            <h1 className="text-2xl font-bold mb-4">Treaty Negotiation Simulator</h1>
+
+            <div className="space-y-2">
+                <div>
+                    <label>Country A:</label>
+                    <select value={a} onChange={(e) => setA(e.target.value)}>
+                        <option>USA</option><option>China</option><option>Russia</option><option>EU</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Country B:</label>
+                    <select value={b} onChange={(e) => setB(e.target.value)}>
+                        <option>USA</option><option>China</option><option>Russia</option><option>EU</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Objective:</label>
+                    <input type="text" value={objective} onChange={(e) => setObjective(e.target.value)} />
+                </div>
+
+                <button onClick={simulateTurn} className="bg-blue-500 text-white px-4 py-2 rounded">Simulate Turn</button>
             </div>
-            <div className="mt-4 space-y-2">
-                {log.map((line, i) => <p key={i}>{line}</p>)}
-            </div>
+
+            {result && (
+                <div className="mt-6 bg-gray-100 p-4 rounded">
+                    <p><strong>{a}:</strong> {result.a_message}</p>
+                    <p><strong>{b}:</strong> {result.b_message}</p>
+                    <p className="italic">{result.next_step}</p>
+                </div>
+            )}
         </div>
     );
 }
